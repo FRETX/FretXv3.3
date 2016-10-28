@@ -254,7 +254,7 @@ public class MainActivity extends ActionBarActivity
 
     protected void onStop(){
         super.onStop();
-        if (audio == null) {
+        if (audio != null) {
             audio.stop();
         }
         audio = null;
