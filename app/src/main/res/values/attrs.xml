@@ -3,4 +3,7 @@
     <declare-styleable name="MyGallery">
         <attr name="android:galleryItemBackground" />
     </declare-styleable>
+    <declare-styleable name="RotatableImageView">
+        <attr name="angle" format="integer"/>
+    </declare-styleable>
 </resources>

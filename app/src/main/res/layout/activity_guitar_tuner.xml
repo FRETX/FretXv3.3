@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<fretx.version3.TunerView
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/tunerView"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:background="#c2c1d1"
+        android:id="@+id/linearLayout">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="GUITAR TUNER"
+            android:id="@+id/textView"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:textSize="25dp"
+            android:textColor="#5B5757" />
+    </LinearLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ccc"></RelativeLayout>
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout"
+        android:background="#DBD1D1"
+        android:gravity="center"
+        android:id="@+id/relativeLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="G#"
+            android:textSize="60dp"
+            android:gravity="right"
+            android:textColor="#938D8D"
+            android:id="@+id/textTunerLeftNote"
+            android:layout_alignParentLeft="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="A#"
+            android:textSize="60dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="#938D8D"
+            android:id="@+id/textTunerRightNote"
+            android:layout_alignParentRight="true"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="A"
+            android:textSize="90dp"
+            android:textColor="#4C4848"
+            android:gravity="center"
+            android:id="@+id/textTunerCenterNote"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relativeLayout"
+        android:gravity="center"
+        android:id="@+id/relativeLayout2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="+20 cents"
+            android:textStyle="bold"
+            android:textColor="#938D8D"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="35dp"
+            android:layout_marginTop="15dp"
+            android:id="@+id/textPitchDifference"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="0"
+            android:textSize="50dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:id="@+id/textView6"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="440 Hz"
+            android:textStyle="bold"
+            android:textColor="#938D8D"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="35dp"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/textTunerPitch"
+            android:gravity="left"
+             />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relativeLayout2"
+        android:gravity="center"
+        android:background="#d6d7d7"
+        android:id="@+id/relativeLayoutTunerMeter"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="-40"
+            android:textSize="25dp"
+            android:id="@+id/textIndicatorMinus40"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="+20"
+            android:textSize="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="95dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/textIndicatorPlus20" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="+40"
+            android:id="@+id/textIndicatorPlus40"
+            android:textSize="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="30dp"/>
+
+        <!--<fretx.version3.RotatableImageView-->
+        <ImageView
+            android:layout_height="wrap_content"
+            android:id="@+id/tunerHand"
+            android:src="@drawable/agujaboton2"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="-20"
+            android:id="@+id/textIndicatorMinus20"
+            android:textSize="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="95dp"
+            android:layout_marginTop="5dp"/>
+    </RelativeLayout>
+
+</fretx.version3.TunerView>
+

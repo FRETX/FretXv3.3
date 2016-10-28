@@ -21,7 +21,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile project(':circleimageview')
     compile files('libs/universal-image-loader-1.9.3.jar')
@@ -37,4 +37,10 @@ dependencies {
     compile files('libs/aws-android-sdk-core-2.2.13.jar')
     compile files('libs/aws-android-sdk-s3-2.2.13.jar')
     compile 'org.puredata.android:pd-core:1.0.1'
+    compile 'com.github.wendykierp:JTransforms:3.1'
+    compile project(':fretx-audio')
+    compile project(':fretx-audio')
+    compile project(':fretx-audio')
+    compile project(':fretx-audio')
+    compile project(':fretx-audio')
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <shape xmlns:android="http://schemas.android.com/apk/res/android"
+        android:shape="oval">
+        <solid android:color="#FF0310"/>
+    <corners android:bottomRightRadius="280dip"
+        android:bottomLeftRadius="280dip"
+        android:topRightRadius="280dip"
+        android:topLeftRadius="280dip"/>
+    <stroke
+    android:height="8dp"
+    android:width="8dp"
+        android:color="#fff"></stroke>
+   <!--the color you want as background-->
+    </shape>

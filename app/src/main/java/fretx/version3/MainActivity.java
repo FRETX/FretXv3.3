@@ -2,21 +2,28 @@ package fretx.version3;
 
 
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -27,16 +34,22 @@ import android.widget.Toast;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.facebook.login.LoginManager;
+import com.sun.mail.iap.ProtocolException;
 
 import java.io.File;
 import java.util.List;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import rocks.fretx.audioprocessing.AudioProcessing;
 
 
 public class MainActivity extends ActionBarActivity
 {
+
+    private final int PERMISSION_CODE_RECORD_AUDIO = 42; //This is arbitrary, so why not The Answer to Life, Universe, and Everything?
+    AudioProcessing audio;
+
 
     ViewPager pager;
 
@@ -58,9 +71,12 @@ public class MainActivity extends ActionBarActivity
     private int mPreviousPosition = 0;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); //keeps screen on while the user is playing etc.
+
         setContentView(R.layout.main_activity_back);
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), titles);
@@ -220,9 +236,29 @@ public class MainActivity extends ActionBarActivity
     @Override
     protected void onResume() {
         super.onResume();
+        boolean permissionsGranted = askForPermissions();
+//        Log.d("onResume", "permissionsGranted: " + permissionsGranted);
+        if (permissionsGranted) {
+            Log.d("onResume", "resuming");
+            //TODO: start processing from fragments?
+//            startProcessing();
+            if(audio == null) audio = new AudioProcessing();
+            if(!audio.isInitialized()) audio.initialize();
+            if(!audio.isProcessing()) audio.start();
+
+        }
+
+
         showConnectionState();
     }
 
+    protected void onStop(){
+        super.onStop();
+        if (audio == null) {
+            audio.stop();
+        }
+        audio = null;
+    }
     @Override
     public void onBackPressed() {
         if (mCurrentPosition == 0){
@@ -265,6 +301,40 @@ public class MainActivity extends ActionBarActivity
         protected void onPostExecute(Drawable result) {
             profilePicView.setImageDrawable(result);
             adapter.notifyDataSetChanged();
+        }
+    }
+
+
+    //Permissions
+    private boolean askForPermissions() {
+        int result = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO);
+        if (result == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        } else {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.RECORD_AUDIO)) {
+                //If the user has denied the permission previously your code will come to this block
+                //Here you can explain why you need this permission
+                //Explain here why you need this permission
+            }
+            //And finally ask for the permission
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, PERMISSION_CODE_RECORD_AUDIO);
+            return false;
+        }
+    }
+
+    //This method will be called when the user will tap on allow or deny
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        //Checking the request code of our request
+        if (requestCode == PERMISSION_CODE_RECORD_AUDIO) {
+            //If permission is granted
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                startProcessing();
+                //TODO: start processing from fragments instead?
+            } else {
+                //Displaying another toast if permission is not granted
+                Toast.makeText(this, "FretX cannot work without this permission. Restart the app to ask for it again.", Toast.LENGTH_LONG).show();
+            }
         }
     }
 }

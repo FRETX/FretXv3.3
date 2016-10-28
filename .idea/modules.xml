@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FRETXv3.iml" filepath="$PROJECT_DIR$/FRETXv3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FretXv3.2.iml" filepath="$PROJECT_DIR$/FretXv3.2.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/circleimageview/circleimageview.iml" filepath="$PROJECT_DIR$/circleimageview/circleimageview.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pdCore/pdCore.iml" filepath="$PROJECT_DIR$/pdCore/pdCore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fretx-audio/fretx-audio.iml" filepath="$PROJECT_DIR$/fretx-audio/fretx-audio.iml" />
     </modules>
   </component>
 </project>
